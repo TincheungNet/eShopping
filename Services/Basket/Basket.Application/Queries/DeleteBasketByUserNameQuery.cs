@@ -2,11 +2,11 @@ using MediatR;
 
 namespace Basket.Application.Queries;
 
-public class DeleteBasketByUserNameCommand  : IRequest<Unit>
+public class DeleteBasketByUserNameQuery : IRequest<Unit>
 {
     public string UserName { get; set; }
 
-    public DeleteBasketByUserNameCommand(string userName)
+    public DeleteBasketByUserNameQuery(string userName)
     {
         UserName = userName;
     }

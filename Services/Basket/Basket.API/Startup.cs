@@ -7,7 +7,7 @@ using Basket.Infrastructure.Repositories;
 //using Common.Logging.Correlation;
 //using Discount.Grpc.Protos;
 using HealthChecks.UI.Client;
-//using MassTransit;
+using MassTransit;
 using MediatR;
 //using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -91,15 +91,15 @@ public class Startup
         services.AddHealthChecks()
             .AddRedis(Configuration["CacheSettings:ConnectionString"], "Redis Health", HealthStatus.Degraded);
 
-        //services.AddMassTransit(config =>
-        //{
-        //    config.UsingRabbitMq((ct, cfg)=>
-        //    {
-        //        cfg.Host(Configuration["EventBusSettings:HostAddress"]);
-        //    });
-        //});
-        //services.AddMassTransitHostedService();
-
+        services.AddMassTransit(config =>
+        {
+            config.UsingRabbitMq((ct, cfg) =>
+            {
+                cfg.Host(Configuration["EventBusSettings:HostAddress"]);
+            });
+        });
+      
+        // for masstransit V8 : services.AddMassTransitHostedService() is already implicitly called 
 
         //Identity Server changes
         // var userPolicy = new AuthorizationPolicyBuilder()

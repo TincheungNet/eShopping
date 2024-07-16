@@ -1,5 +1,5 @@
 using AutoMapper;
-//using EventBus.Messages.Events;
+using EventBus.Messages.Events;
 using Ordering.Application.Commands;
 using Ordering.Application.Responses;
 using Ordering.Core.Entities;
@@ -13,7 +13,7 @@ public class OrderMappingProfile : Profile
         CreateMap<Order, OrderResponse>().ReverseMap();
         CreateMap<Order, CheckoutOrderCommand>().ReverseMap();
         CreateMap<Order, UpdateOrderCommand>().ReverseMap();
-        //CreateMap<CheckoutOrderCommand, BasketCheckoutEvent>().ReverseMap();
+        CreateMap<CheckoutOrderCommand, BasketCheckoutEvent>().ReverseMap();
         //CreateMap<CheckoutOrderCommand, BasketCheckoutEventV2>().ReverseMap();
     }
 }
